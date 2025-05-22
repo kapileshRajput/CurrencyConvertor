@@ -11,7 +11,8 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
     
     var id: Self { self }
     
-    case Usa = "USD",
+    case Indian = "INR",
+         Usa = "USD",
          Euro = "EUR",
          BritishPound = "GBP",
          Afghani = "AFN",
@@ -70,7 +71,6 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
          Honduran = "HNL",
          Hungarian = "HUF",
          Iceland = "ISK",
-         Indian = "INR",
          Indonesia = "IDR",
          Iranian = "IRR",
          Iraqi = "IQD",
@@ -158,6 +158,7 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
     
     func image() -> Image {
         switch self {
+        case .Indian:               return Image("India")
         case .Usa:                  return Image("usa")
         case .Euro:                 return Image("euro")
         case .MexicanPeso:          return Image("peso")
@@ -167,7 +168,6 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
         case .Chinese:              return Image("China")
         case .Kazakhstan:           return Image("kz")
         case .Rubles:               return Image("rub")
-        case .Indian:               return Image("India")
         case .Australian:           return Image("Australia")
         case .Turkish:              return Image("turkish")
         case .UAEDirhams:           return Image("aed")
@@ -308,6 +308,7 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
     func fetchMenuName() -> String {
         switch self {
             
+        case .Indian:               return "🇮🇳 Indian Rupee"
         case .Usa:                  return "🇺🇸 US Dollar"
         case .Euro:                 return "🇪🇺 Euro"
         case .BritishPound:         return "🇬🇧 British Pound"
@@ -367,7 +368,6 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
         case .Honduran:             return "🇭🇳 Honduran Lempira"
         case .Hungarian:            return "🇭🇺 Hungarian Forint"
         case .Iceland:              return "🇮🇸 Iceland Króna"
-        case .Indian:               return "🇮🇳 Indian Rupee"
         case .Indonesia:            return "🇮🇩 Indonesian Rupiah"
         case .Iranian:              return "🇮🇷 Iranian Rial"
         case .Iraqi:                return "🇮🇶 Iraq Dinar"
@@ -452,7 +452,6 @@ enum CurrencyChoice: String, CaseIterable, Identifiable {
         case .WAfrica:              return "🇿🇦 West African Franc"
         case .Yemeni:               return "🇾🇪 Yemen Rial"
         case .Zambian:              return "🇿🇲 Zambian Kwacha"
-    
         }
     }
     

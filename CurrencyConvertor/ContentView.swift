@@ -8,21 +8,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var amount: String = ""
-    @State private var conversionAmount: String = ""
+    @StateObject var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Amount")
-                .font(.system(size: 15))
-            
-            TextField("", text: $amount)
-                .font(.system(size: 18, weight: .semibold))
-                .padding()
-                .overlay {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.gray, lineWidth: 1)
-                }
+            CustomTextFieldView(
+                amount: $viewModel.baseAmount, currency: $viewModel.baseCurrency, title: "Amount",
+                numberFormatter: viewModel.numberFormatter
+            )
             
             HStack {
                 Spacer()
@@ -32,16 +25,10 @@ struct ContentView: View {
             }
             .padding(.vertical)
             
-            Text("Converted To")
-                .font(.system(size: 15))
-            
-            TextField("", text: $conversionAmount)
-                .font(.system(size: 18, weight: .semibold))
-                .padding()
-                .overlay {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.gray, lineWidth: 1)
-                }
+            CustomTextFieldView(
+                amount: $viewModel.convertedAmount, currency: $viewModel.convertedCurrency, title: "Converted To",
+                numberFormatter: viewModel.numberFormatter
+            )
             
             HStack {
                 Spacer()
