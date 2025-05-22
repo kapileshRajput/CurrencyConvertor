@@ -17,13 +17,10 @@ struct ContentView: View {
                 numberFormatter: viewModel.numberFormatter
             )
             
-            HStack {
-                Spacer()
-                Image(systemName: "arrow.up.arrow.down")
-                    .font(.system(size: 20, weight: .bold))
-                Spacer()
-            }
-            .padding(.vertical)
+            SwitchCurrenciesButtonView(
+                firstCurrency: $viewModel.baseCurrency,
+                secondCurrency: $viewModel.convertedCurrency
+            )
             
             CustomTextFieldView(
                 amount: $viewModel.convertedAmount, currency: $viewModel.convertedCurrency, title: "Converted To",
