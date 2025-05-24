@@ -37,6 +37,9 @@ struct ContentView: View {
             
         }
         .padding(.horizontal)
+        .onAppear {
+            APIManager.shared.getLatestExchangeRates()
+        }
     }
 }
 

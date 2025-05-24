@@ -14,6 +14,7 @@
 		2066DA0C2B93523100AF726C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2066DA0B2B93523100AF726C /* Preview Assets.xcassets */; };
 		E35FFF5D2DE14AED0078C8FC /* secure.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E35FFF5C2DE14AED0078C8FC /* secure.xcconfig */; };
 		E35FFF5F2DE14B190078C8FC /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35FFF5E2DE14B140078C8FC /* AppConfig.swift */; };
+		E35FFF622DE14D510078C8FC /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35FFF612DE14D430078C8FC /* APIManager.swift */; };
 		E36164B62DDEA224006C3C93 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36164B52DDEA21B006C3C93 /* ContentViewModel.swift */; };
 		E36164B82DDEA532006C3C93 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36164B72DDEA532006C3C93 /* CustomTextFieldView.swift */; };
 		E36164BA2DDEAC8E006C3C93 /* SwitchCurrenciesButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36164B92DDEAC8E006C3C93 /* SwitchCurrenciesButtonView.swift */; };
@@ -29,6 +30,7 @@
 		E35FFF5C2DE14AED0078C8FC /* secure.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = secure.xcconfig; sourceTree = "<group>"; };
 		E35FFF5E2DE14B140078C8FC /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		E35FFF602DE14B720078C8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E35FFF612DE14D430078C8FC /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E36164B52DDEA21B006C3C93 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		E36164B72DDEA532006C3C93 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		E36164B92DDEAC8E006C3C93 /* SwitchCurrenciesButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCurrenciesButtonView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 		2066DA032B93522F00AF726C /* CurrencyConvertor */ = {
 			isa = PBXGroup;
 			children = (
+				E35FFF612DE14D430078C8FC /* APIManager.swift */,
 				E35FFF602DE14B720078C8FC /* Info.plist */,
 				E35FFF5B2DE14AD60078C8FC /* config */,
 				E36164B92DDEAC8E006C3C93 /* SwitchCurrenciesButtonView.swift */,
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E35FFF622DE14D510078C8FC /* APIManager.swift in Sources */,
 				E36164B62DDEA224006C3C93 /* ContentViewModel.swift in Sources */,
 				2066DA072B93522F00AF726C /* ContentView.swift in Sources */,
 				2066DA052B93522F00AF726C /* CurrencyConvertorApp.swift in Sources */,
