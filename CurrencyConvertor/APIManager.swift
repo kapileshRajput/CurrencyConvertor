@@ -29,52 +29,6 @@ struct APIManager {
         self.appId = AppConfig.value(for: .apiKey)
     }
     
-    /*
-     Note:
-     1. This is a version of URLSession which allows us to make request and receive response as a completion handeler.
-     2. We get the JSON by serializing the "data" and casting it to [String: Any]
-     */
-    func getLatestExchangeRates() {
-        let urlString = "\(baseURL)\(EndPoint.latestJson.value)?app_id=\(appId)"
-        print("urlString: \(urlString)")
-        
-        guard let url = URL(string: urlString) else {
-            print("Error: Failed to create URL")
-            return
-        }
-        
-        let urlRequest = URLRequest(url: url)
-        print("FIRST")
-        let task = URLSession.shared.dataTask(
-            with: urlRequest) { data, response, error in
-                print("SECOND")
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                
-                guard let data = data else {
-                    print("Error: Invalid data")
-                    return
-                }
-                
-                do {
-                    guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]  else {
-                        print("Error: Failed to serialize JSON data")
-                        return
-                    }
-                    
-                    print("Json: \(json)")
-                } catch {
-                    print("Error: \(error.localizedDescription)")
-                }
-            }
-        
-        task.resume()
-        
-        print("THIRD")
-    }
-    
     func getLatestRates() async {
         let urlString = "\(baseURL)\(EndPoint.latestJson.value)?app_id=\(appId)"
         print("urlString: \(urlString)")
@@ -90,19 +44,14 @@ struct APIManager {
         
         do {
             
-            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
             
             print("SECOND")
             
-            guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]  else {
-                print("Error: Failed to serialize JSON data")
-                return
-            }
+            let result = try JSONDecoder().decode(Rates.self, from: data)
             
-//            print("Json: \(json)")
-            
-            if let rates = json["rates"] as? [String: Any], let inrRates = rates["INR"] {
-                print("INR rate is: \(inrRates)")
+            if let inrRate = result.rates["INR"] {
+                print("INR rate: \(inrRate)")
             }
             
             print("THIRD")
