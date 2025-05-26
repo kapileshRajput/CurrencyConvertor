@@ -38,7 +38,9 @@ struct ContentView: View {
         }
         .padding(.horizontal)
         .onAppear {
-            APIManager.shared.getLatestExchangeRates()
+            Task {
+                await APIManager.shared.getLatestRates()
+            }
         }
     }
 }

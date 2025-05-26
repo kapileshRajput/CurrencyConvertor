@@ -44,10 +44,10 @@ struct APIManager {
         }
         
         let urlRequest = URLRequest(url: url)
-        
+        print("FIRST")
         let task = URLSession.shared.dataTask(
             with: urlRequest) { data, response, error in
-                
+                print("SECOND")
                 if let error = error {
                     print(error.localizedDescription)
                     return
@@ -71,5 +71,44 @@ struct APIManager {
             }
         
         task.resume()
+        
+        print("THIRD")
+    }
+    
+    func getLatestRates() async {
+        let urlString = "\(baseURL)\(EndPoint.latestJson.value)?app_id=\(appId)"
+        print("urlString: \(urlString)")
+        
+        guard let url = URL(string: urlString) else {
+            print("Error: Failed to create URL")
+            return
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        
+        print("FIRST")
+        
+        do {
+            
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            print("SECOND")
+            
+            guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]  else {
+                print("Error: Failed to serialize JSON data")
+                return
+            }
+            
+//            print("Json: \(json)")
+            
+            if let rates = json["rates"] as? [String: Any], let inrRates = rates["INR"] {
+                print("INR rate is: \(inrRates)")
+            }
+            
+            print("THIRD")
+             
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
     }
 }
