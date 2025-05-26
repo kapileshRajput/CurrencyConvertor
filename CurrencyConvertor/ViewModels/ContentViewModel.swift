@@ -37,12 +37,14 @@ class ContentViewModel: ObservableObject {
         case .failure(let error):
             switch error {
             case .invalidURL:
-                self.errorMessage = "Invalid URL"
+                print("Invalid URL")
             case .decodingFailed(let decodingError):
-                self.errorMessage = "Decoding error: \(decodingError)"
+                print("Decoding error: \(decodingError)")
             case .networkError(let networkError):
-                self.errorMessage = "Network error: \(networkError)"
+                print("Network error: \(networkError)")
             }
+            // Not showing user the technical error but something generic and easy to understand.
+            self.errorMessage = "Could not fetch rates."
         }
     }
 }
