@@ -12,12 +12,14 @@ struct SwitchCurrenciesButtonView: View {
     
     @Binding var firstCurrency: CurrencyChoice
     @Binding var secondCurrency: CurrencyChoice
+    var action: (() -> Void)? = nil
     
     var body: some View {
         Button {
             let tempCurrencyChoiceHolder = firstCurrency
             firstCurrency = secondCurrency
             secondCurrency = tempCurrencyChoiceHolder
+            action?()
         } label: {
             HStack {
                 Spacer()

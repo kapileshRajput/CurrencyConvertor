@@ -1,0 +1,163 @@
+# =========================
+# MARK: - Xcode
+# =========================
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.xcworkspace/xcuserdata
+*.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+# Xcode project user data
+**/xcuserdata/
+**/*.xcuserdatad/
+**/*.moved-aside
+
+# Build products
+build/
+DerivedData/
+*.o
+*.LinkFileList
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.app
+*.xcarchive
+*.xcresult
+
+# Previews
+*.preview-thumbnails
+
+# Xcode automatic backup files
+*.xcuserstate
+
+# Xcode-generated documentation
+*.docc-build
+
+# Xcode Server integration
+*.simruntime
+*.simdevice
+
+# Code Coverage
+*.xccovreport
+*.xccovarchive
+
+# =========================
+# MARK: - Swift / SPM
+# =========================
+.swiftpm/
+.build/
+Package.resolved
+.swift-version
+.checkouts/
+
+# =========================
+# MARK: - CocoaPods
+# =========================
+Pods/
+Podfile.lock
+Podfile~
+project.xcworkspace
+
+# =========================
+# MARK: - Carthage
+# =========================
+Carthage/
+Carthage/Build
+
+# =========================
+# MARK: - fastlane
+# =========================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# =========================
+# MARK: - Firebase / Crashlytics
+# =========================
+GoogleService-Info.plist
+.crashlytics/
+fabric/
+
+# =========================
+# MARK: - Realm
+# =========================
+*.realm
+*.realm.lock
+
+# =========================
+# MARK: - SQLite
+# =========================
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# =========================
+# MARK: - Tuist
+# =========================
+/.tuist-cache
+/ProjectDescriptionHelpers
+
+# =========================
+# MARK: - AppCenter
+# =========================
+appcenter-post-clone.sh
+appcenter-pre-build.sh
+appcenter-post-build.sh
+
+# =========================
+# MARK: - Environment Files
+# =========================
+.env
+.env.*
+
+# =========================
+# MARK: - SwiftLint
+# =========================
+.swiftlint.yml
+.swiftlint.json
+
+# =========================
+# MARK: - IDEs
+# =========================
+.idea/
+*.iml
+
+# =========================
+# MARK: - Logs & Temp
+# =========================
+*.log
+*.tmp
+*.temp
+*.swp
+*.lock
+*.DS_Store
+*.orig
+*.bak
+
+# =========================
+# MARK: - Certificates / Provisioning
+# =========================
+*.mobileprovision
+*.cer
+*.p12
+*.key
+*.pem
+
+# =========================
+# MARK: - Git LFS
+# =========================
+*.lfs*
+
+# =========================
+# MARK: - Playgrounds
+# =========================
+timeline.xctimeline
+playground.xcworkspace
+
+# =========================
+# MARK: - Project-Specific
+# =========================
+**/config/*.xcconfig
+
