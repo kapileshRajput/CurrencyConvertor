@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+@MainActor
 class ContentViewModel: ObservableObject {
     @Published var baseAmount: Double = 1.0
     @Published var convertedAmount: Double = 1.0
-    @Published var baseCurrency: CurrencyChoice = .Indian
+    @Published var baseCurrency: CurrencyChoice = .Usa
     @Published var convertedCurrency: CurrencyChoice = .Indian
     @Published var fetchedRates: Rates?
     @Published var isLoading: Bool = false
@@ -22,6 +23,16 @@ class ContentViewModel: ObservableObject {
         formatter.currencySymbol = ""
         formatter.maximumFractionDigits = 2
         return formatter
+    }
+    
+    var conversionRate: Double {
+        if let rates = fetchedRates,
+           let baseExchangeRate = rates.rates[baseCurrency.rawValue],
+           let convertedExchangeRate = rates.rates[convertedCurrency.rawValue] {
+            return convertedExchangeRate / baseExchangeRate
+        }
+        
+        return 1
     }
     
     func getLatestRates() async {
@@ -44,7 +55,21 @@ class ContentViewModel: ObservableObject {
                 print("Network error: \(networkError)")
             }
             // Not showing user the technical error but something generic and easy to understand.
-            self.errorMessage = "Could not fetch rates."
+            await MainActor.run {
+                self.errorMessage = "Could not fetch rates."
+            }
+        }
+    }
+    
+    func convert() {
+        // Formula: (ConversionRate / BaseExchangeRate * BaseAmount = Conversion)
+        
+        if let rates = fetchedRates,
+           let baseExchangeRate = rates.rates[baseCurrency.rawValue],
+           let convertedExchangeRate = rates.rates[convertedCurrency.rawValue] {
+                self.convertedAmount = (
+                    convertedExchangeRate / baseExchangeRate
+                ) * self.baseAmount
         }
     }
 }

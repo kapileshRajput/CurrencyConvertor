@@ -10,6 +10,9 @@ struct ContentView: View {
     
     @StateObject var viewModel: ContentViewModel = ContentViewModel()
     
+    @FocusState var baseAmountIsFocused: Bool
+    @FocusState var convertedAmountIsFocused: Bool
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
@@ -23,25 +26,31 @@ struct ContentView: View {
                 }
                 
                 CustomTextFieldView(
-                    amount: $viewModel.baseAmount, currency: $viewModel.baseCurrency, title: "Amount",
-                    numberFormatter: viewModel.numberFormatter
-                )
+                    amount: $viewModel.baseAmount, currency: $viewModel.baseCurrency, isFocused: $baseAmountIsFocused, title: "Amount",
+                    numberFormatter: viewModel.numberFormatter, currencyChangeOperation:  {
+                        viewModel.convert()
+                    })
                 
                 SwitchCurrenciesButtonView(
                     firstCurrency: $viewModel.baseCurrency,
-                    secondCurrency: $viewModel.convertedCurrency
-                )
+                    secondCurrency: $viewModel.convertedCurrency) {
+                        viewModel.convert()
+                    }
                 
                 CustomTextFieldView(
-                    amount: $viewModel.convertedAmount, currency: $viewModel.convertedCurrency, title: "Converted To",
-                    numberFormatter: viewModel.numberFormatter
+                    amount: $viewModel.convertedAmount, currency: $viewModel.convertedCurrency, isFocused: $convertedAmountIsFocused, title: "Converted To",
+                    numberFormatter: viewModel.numberFormatter, currencyChangeOperation:  {
+                        viewModel.convert()
+                    }
                 )
                 
                 HStack {
                     Spacer()
-                    Text("1.0000 USD = 2.00000 EUR")
-                        .font(.system(size: 18, weight: .semibold))
-                        .padding(.top, 25)
+                    Text(
+                        "1.000000 \(viewModel.baseCurrency.rawValue) = \(viewModel.conversionRate) \(viewModel.convertedCurrency.rawValue)"
+                    )
+                    .font(.system(size: 18, weight: .semibold))
+                    .padding(.top, 25)
                     Spacer()
                 }
                 
@@ -49,6 +58,7 @@ struct ContentView: View {
             .padding(.horizontal)
             .task {
                 await viewModel.getLatestRates()
+                viewModel.convert()
             }
             
             if viewModel.isLoading {
@@ -60,6 +70,11 @@ struct ContentView: View {
                         .tint(.white)
                 }
             }
+        }
+        .onTapGesture {
+            viewModel.convert()
+            baseAmountIsFocused = false
+            convertedAmountIsFocused = false
         }
     }
 }
